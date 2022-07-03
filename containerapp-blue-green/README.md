@@ -11,11 +11,18 @@ References:
 * Azure CLI
 * az login
 
+## Run setup
+
+```sh
+chmod 775 ./scripts/*.sh
+# use source as we want to set environment variables in parent shell
+source ./scripts/setup.sh
+```
+
 ## Run deployment
 
 ```sh
-chmod 775 *.sh
-./setup.sh
+./scripts/deploy.sh
 ```
 
 ## Test public url
@@ -28,6 +35,9 @@ curl --silent https://$fqdn
 ## Clean up deployment
 
 ```sh
+./scripts/cleanup.sh
+
+# delete resource group
 resourceGroupName=<resource group name>
 az group delete --name $resourceGroupName --yes --no-wait
 ```
