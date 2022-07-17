@@ -3,3 +3,10 @@
 
 # VS Code
 .vscode/*
+
+# asp.net core
+[Bb]in/
+[Oo]bj/
+
+# Logs
+logs
