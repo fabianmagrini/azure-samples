@@ -32,6 +32,7 @@ source ./scripts/setup.sh
 ```sh
 az keyvault key create --vault-name $keyVaultName --name "TestKey" --protection software
 az keyvault secret set --vault-name $keyVaultName --name "TestKey" --value "TestKeyValue"
+az keyvault key list --vault-name $keyVaultName
 
 ```
 
@@ -92,4 +93,17 @@ az keyvault set-policy --name $keyVaultName --spn $AZURE_CLIENT_ID --key-permiss
 # Retrieve Key Vault URL:
 export keyVaultUrl=$(az keyvault show --name $keyVaultName --query properties.vaultUri --output tsv)
 
+```
+
+### Grant permissions to perform key operations on the Key Vault
+
+```sh
+az keyvault set-policy --name $keyVaultName --spn $AZURE_CLIENT_ID --key-permissions encrypt decrypt wrapKey unwrapKey sign verify get list create update import delete backup restore recover purge rotate getrotationpolicy setrotationpolicy release
+
+```
+
+### Run
+
+```sh
+dotnet run plaintext.txt ciphertext.txt
 ```
